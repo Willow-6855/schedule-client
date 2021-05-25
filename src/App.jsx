@@ -12,25 +12,12 @@ import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined, PlayCircl
 
 const App = () => {
 
+  const settingsFromStorage = localStorage.getItem('scheduleSettings')
+  if(!settingsFromStorage){localStorage.setItem('scheduleSettings', JSON.stringify({lunch: 'A', display: 'Timer'}))}
+  
   
   const [view, setView] = useState("clock")
-  const [settings,setSettings] = useState({lunch: 'A', display: 'Timer'})
-
-  const loadSettings = () => {
-    const settingsFromStorage = localStorage.getItem('scheduleSettings')
     
-    if(settingsFromStorage){
-      setSettings(JSON.parse(settingsFromStorage))
-      console.log('grabbed')
-    } else(
-      localStorage.setItem('scheduleSettings', JSON.stringify(settings))
-    )
-  }
-
-  useEffect(() => {
-    loadSettings()
-  }, [])
-
 
   return (
     <>

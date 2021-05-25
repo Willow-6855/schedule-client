@@ -15,11 +15,8 @@ const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
     
-    let defaultSettings
-    if(!localStorage.getItem('scheduleSettings')){
-        defaultSettings = {lunch: 'A', display: 'Timer'}
-    }
-    const [settings, setSettings] = useState(!JSON.parse(localStorage.getItem('scheduleSettings')) ? defaultSettings : JSON.parse(localStorage.getItem('scheduleSettings')))
+
+    const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('scheduleSettings')))
     const [settingsPending, setSettingsPending] = useState(settings)
     
     return(

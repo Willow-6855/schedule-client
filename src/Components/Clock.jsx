@@ -241,9 +241,13 @@ const Clock = () => {
     }
     
     
-    const [settings,setSettings] = useState({lunch: 'C', display: 'Period', color: {to: "#1890FF", from: "#eb2f96"}})
+    const [settings,setSettings] = useState(JSON.parse(localStorage.getItem('scheduleSettings')))
 
     
+    useEffect(() => {
+        setSettings(JSON.parse(localStorage.getItem('scheduleSettings')))
+    }, [JSON.parse(localStorage.getItem('scheduleSettings'))])
+
     const lunchStatus = () => {
         let userLunchPeriod = period.lunchPeriods[settings.lunch]
         
@@ -357,7 +361,7 @@ const Clock = () => {
                         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                             {settings.display == "Timer" ?  
                             
-                            genText() || 'Loading...' 
+                            <Text marginBottom={0} fontSize={mobile? "3rem" : "100px"} >{genText()}</Text> || 'Loading...' 
                             
                             : 
                             
