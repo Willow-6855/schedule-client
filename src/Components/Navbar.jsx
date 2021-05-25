@@ -15,9 +15,14 @@ const Navbar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
     
-
+    
     const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('scheduleSettings')))
     const [settingsPending, setSettingsPending] = useState(settings)
+    
+    const closeModal = () => {
+        onClose()
+        setSettingsPending(settings)
+    }
     
     return(
         <div>
@@ -37,11 +42,10 @@ const Navbar = () => {
                 </Box>
             </Flex>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
+            <Modal isOpen={isOpen} onClose={closeModal}>
+                <ModalOverlay/>
                 <ModalContent>
                 <ModalHeader>Settings</ModalHeader>
-                <ModalCloseButton />
                 <ModalBody>
                     <Stack direction="column" style={{display: 'flex', justifyContent: 'space-between', marginBottom: "20px", marginTop: "3px"}}>
                         
