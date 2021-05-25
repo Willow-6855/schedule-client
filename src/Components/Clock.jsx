@@ -8,6 +8,12 @@ import { getSchedule } from '../API/api'
 
 import { CircularProgress, CircularProgressLabel, Text } from '@chakra-ui/react'
 
+import Morning from '../Assets/Landscapes/Morning.png'
+import Daytime from '../Assets/Landscapes/Daytime.png'
+import Sundown from '../Assets/Landscapes/Sundown.png'
+import Night from '../Assets/Landscapes/Night.png'
+
+
 var customParseFormat = require('dayjs/plugin/customParseFormat')
 var duration = require('dayjs/plugin/duration')
 
@@ -25,6 +31,62 @@ const Clock = () => {
     const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
     const [status, setStatus] = useState('LOADING')
 
+
+
+    const statusTextData = {
+        BEFORE_SCHOOL_MORNING: {
+            text: "School Hasn't Started",
+            image: Morning
+        },
+        BEFORE_SCHOOL_NIGHT: {
+            text: "School Hasn't Started",
+            image: Night
+        },
+        AFTER_SCHOOL_NIGHT: {
+            text: "School Has Ended",
+            image: Night
+        },
+        AFTER_SCHOOL_SUNDOWN: {
+            text: "School Has Ended",
+            image: Sundown
+        },
+        AFTER_SCHOOL_DAYTIME: {
+            text: "School Has Ended",
+            image: Daytime
+        },
+        WEEKEND_NIGHT: {
+            text: "Weekend",
+            image: Night
+        },
+        WEEKEND_SUNDOWN: {
+            text: "Weekend",
+            image: Sundown
+        },
+        WEEKEND_DAYTIME: {
+            text: "Weekend",
+            image: Daytime
+        },
+        WEEKEND_MORNING: {
+            text: "Weekend",
+            image: Morning
+        },
+        E_LEARNING_MORNING: {
+            text: "E-Learning Friday",
+            image: Morning
+        },
+        E_LEARNING_DAYTIME: {
+            text: "E-Learning Friday",
+            image: Daytime
+        },
+        E_LEARNING_SUNDOWN: {
+            text: "E-Learning Friday",
+            image: Sundown
+        },
+        E_LEARNING_NIGHT: {
+            text: "E-Learning Friday",
+            image: Night
+        },
+    }
 
 
 
@@ -283,93 +345,109 @@ const Clock = () => {
 
     }
     
+    
     return (
+        status == "SCHOOL_NOW" ? 
         
+            <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
+                <CircularProgress trackColor="#f5f5f5" thickness={3.5} size={mobile ? window.innerWidth * .85 : 580} value={period ? genPercent() : 0} capIsRound={true} >
+                    <CircularProgressLabel fontSize={50}>
 
-        <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
-            <CircularProgress trackColor="#f5f5f5" thickness={3.5} size={mobile ? window.innerWidth * .85 : 580} value={period ? genPercent() : 0} capIsRound={true} >
-                <CircularProgressLabel fontSize={50}>
-
-                    {period ? 
-                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                        {settings.display == "Timer" ?  
-                        
-                        genText() || 'Loading...' 
-                        
-                        : 
-                        
-                        <>
-                            <Text marginBottom={0} fontSize={mobile? "3rem" : "80px"} >
-                            {period.lunchPeriods ?
-                                    <>
-                                        {lunchStatus() == "DURING" ? 
-                                            settings.lunch + ' Lunch'
-                                        :
-                                            period.periodName
-                                        }
-                                    </>
-                                    :
-                                    period.periodName
-
-                                }
-                            </Text>
-                        </>
-                        
-                        }
-                        {settings.display == "Timer" ? 
+                        {period ? 
+                        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                            {settings.display == "Timer" ?  
+                            
+                            genText() || 'Loading...' 
+                            
+                            : 
+                            
                             <>
-                                {period.isPassing ? 
-
-                                nextPeriod?.lunchPeriods && settings.lunch == "A" ?
-                                <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop:"0px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
-
-                                :
-                                <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
-
-                                :
-                                    <>
-                                    {period.lunchPeriods ?
-                                        {
-                                            'DURING':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
-                                            'BEFORE':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
-                                            'AFTER':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
-                                        }[lunchStatus()]
-                                    :
-                                    <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.2rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
+                                <Text marginBottom={0} fontSize={mobile? "3rem" : "80px"} >
+                                {period.lunchPeriods ?
+                                        <>
+                                            {lunchStatus() == "DURING" ? 
+                                                settings.lunch + ' Lunch'
+                                            :
+                                                period.periodName
+                                            }
+                                        </>
+                                        :
+                                        period.periodName
 
                                     }
-                                    </>
-                                }
+                                </Text>
                             </>
-                        :
-                        
                             
-                            <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.5rem", marginTop: "0", wordSpacing: "3px"}}>
-                                {genText()} {period.lunchPeriods ? 
-                                    {
-                                        'DURING':   <>Until Lunch Ends </> ,
-                                        'BEFORE':  <>Until {settings.lunch} Lunch </>,
-                                        'AFTER':  <>{nextPeriod ? `Until Period Ends` : "Until School Ends"}</>
-                                    }[lunchStatus()]
+                            }
+                            {settings.display == "Timer" ? 
+                                <>
+                                    {period.isPassing ? 
+
+                                    nextPeriod?.lunchPeriods && settings.lunch == "A" ?
+                                    <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop:"0px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
+
                                     :
-                                    'Until Period Ends'
-                                }
-                            </Text>
+                                    <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
 
-                        }
+                                    :
+                                        <>
+                                        {period.lunchPeriods ?
+                                            {
+                                                'DURING':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
+                                                'BEFORE':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
+                                                'AFTER':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
+                                            }[lunchStatus()]
+                                        :
+                                        <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.2rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
 
-                    
+                                        }
+                                        </>
+                                    }
+                                </>
+                            :
+                            
+                                
+                                <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.5rem", marginTop: "0", wordSpacing: "3px"}}>
+                                    {genText()} {period.lunchPeriods ? 
+                                        {
+                                            'DURING':   <>Until Lunch Ends </> ,
+                                            'BEFORE':  <>Until {settings.lunch} Lunch </>,
+                                            'AFTER':  <>{nextPeriod ? `Until Period Ends` : "Until School Ends"}</>
+                                        }[lunchStatus()]
+                                        :
+                                        'Until Period Ends'
+                                    }
+                                </Text>
 
-                    </div>
+                            }
 
-                    : "Loading..."}
+                        
 
-                </CircularProgressLabel>
+                        </div>
 
-            </ CircularProgress>
-        </div>
+                        : "Loading..."}
+
+                    </CircularProgressLabel>
+
+                </ CircularProgress>
+            </div>
    
+        :
+        
+        status != "LOADING" ?
+            <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
 
+                <div style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{statusTextData[status]['text']}</h1>
+                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+                </div>
+                <img src={statusTextData[status]['image']} className="bright" style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
+
+            </div>
+
+        :
+
+            <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}><Text>Loading...</Text></div>
     )
 }
 
