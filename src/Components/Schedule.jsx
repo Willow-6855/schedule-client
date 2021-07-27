@@ -39,7 +39,7 @@ const Schedule = () => {
                         <>
                             <MotionBox
                                 whileHover={{x:10}}
-                                style={{flexShrink: 0, boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
+                                style={{flexShrink: 0, boxShadow: " 2px 2px 15px rgb(0,118,200,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
                             >
                                 <div>
                                     <Text fontSize="2xl" level={mobile ? 4 : 3} style={{color: colorMode == "dark" ? "white" : "#333", marginBottom: '0px'}}>{period.periodName}</Text>

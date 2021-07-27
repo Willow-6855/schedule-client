@@ -97,6 +97,7 @@ const Navbar = () => {
                         onClose()
                         setSettings(settingsPending)
                         localStorage.setItem('scheduleSettings', JSON.stringify(settingsPending))
+                        //window.location.reload()
                     }}>
                         Save
                     </Button>
