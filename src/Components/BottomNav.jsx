@@ -2,6 +2,7 @@ import React from 'react'
 
 import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined, PlayCircleOutlined} from '@ant-design/icons';
 import { theme, useColorMode, Text } from "@chakra-ui/react"
+import RestaurantOutlinedIcon from '@material-ui/icons/RestaurantOutlined'
 
 const BottomNav = (props) => {
 
@@ -31,7 +32,6 @@ const BottomNav = (props) => {
           
 
             <div style={{display: 'flex', zIndex: 4, boxShadow: "2px 2px 10px rgb(0,118,220,0.2)", borderRadius: "10px"}}>
-
 
                 <div onClick={() => {props.setView("schedule")}} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: props.view == "schedule" ? colorTheme.selectedBackground: colorTheme.unselectedBackground , boxShadow: props.view == "schedule" ? colorTheme.boxShadow : "none", cursor: 'pointer'}}>
                     <UnorderedListOutlined style={{fontSize: "20px"}}/>

@@ -4,6 +4,7 @@ import {use100vh} from 'react-div-100vh'
 import { getSchedule } from '../API/api'
 import useMedia from '../Hooks/useMedia'
 
+import dayjs from 'dayjs'
 
 import { Box, Text, useColorMode, CircularProgress, VStack, Stack, HStack } from "@chakra-ui/react"
 import { motion } from "framer-motion"
@@ -16,6 +17,7 @@ const Schedule = () => {
     const { colorMode, toggleColorMode } = useColorMode()
     const [loading, setLoading] = useState(true)
     const [schedule, setSchedule] = useState()
+    const [lunchType, setLunchType] = useState(null)
 
     useEffect(() => {
         getSchedule().then((response) => {
@@ -25,6 +27,21 @@ const Schedule = () => {
         })
     }, [])
 
+
+    useEffect(() => {
+        const settings = JSON.parse(localStorage.getItem('scheduleSettings'))
+        const dayType = localStorage.getItem('day-type')
+        
+        
+        if(dayType == "Royal"){
+            setLunchType(settings.royalDay)
+        }else if(dayType == "Blue"){
+            setLunchType(settings.blueDay)
+        }else{
+            
+        }
+        
+    }, [localStorage.getItem('scheduleSettings')])
 
 
     return (
@@ -39,7 +56,7 @@ const Schedule = () => {
                         <>
                             <MotionBox
                                 whileHover={{x:10}}
-                                style={{flexShrink: 0, boxShadow: " 2px 2px 15px rgb(0,118,200,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
+                                style={{flexShrink: 0, boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
                             >
                                 <div>
                                     <Text fontSize="2xl" level={mobile ? 4 : 3} style={{color: colorMode == "dark" ? "white" : "#333", marginBottom: '0px'}}>{period.periodName}</Text>
@@ -56,7 +73,7 @@ const Schedule = () => {
                                         return(
                                             <MotionBox
                                                 whileHover={{x:3}}
-                                                style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
+                                                style={{boxShadow: lunch == lunchType ? "2px 2px 15px #ffdb58 " : " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
                                             >
                                                 <div>
                                                     <Text fontSize="2xl"  level={mobile ? 4 : 3} style={{color: colorMode == "dark" ? "white" : "#333", marginBottom: '0px'}}>{lunch}</Text>

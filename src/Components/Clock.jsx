@@ -172,9 +172,17 @@ const Clock = () => {
         
         getSchedule().then((response) => {
             const returnResponse = response.data
+            
+            
+            const typeOfDay = returnResponse.data.Type
+            localStorage.setItem('day-type', typeOfDay)
+
+
+            
             fetchedSchedule = returnResponse.data.data
-        
-   
+            
+            
+            
 
             let scheduleWithUnix = []
 

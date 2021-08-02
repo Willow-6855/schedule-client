@@ -25,7 +25,7 @@ const Navbar = () => {
     }
     
     return(
-        <div>
+        <div style={{zIndex: "2"}}>
             
             <Flex>
                 <HStack style={{padding: "10px"}}>
@@ -50,8 +50,18 @@ const Navbar = () => {
                     <Stack direction="column" style={{display: 'flex', justifyContent: 'space-between', marginBottom: "20px", marginTop: "3px"}}>
                         
                         <div style={{marginTop: "3px",  marginBottom: "20px"}}>
-                            <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>LUNCH</Text>
-                            <RadioGroup onChange={((e) => {setSettingsPending({...settingsPending, lunch: e}) }) } value={settingsPending['lunch']}>
+                            <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>ROYAL DAY LUNCH</Text>
+                            <RadioGroup onChange={((e) => {setSettingsPending({...settingsPending, royalDay: e}) }) } value={settingsPending['royalDay']}>
+                                <Stack direction="row">
+                                    <Radio value="A">A Lunch</Radio>
+                                    <Radio value="B">B Lunch</Radio>
+                                    <Radio value="C">C Lunch</Radio>
+                                </Stack>
+                            </RadioGroup>
+                        </div>  
+                        <div style={{marginTop: "3px",  marginBottom: "20px"}}>
+                            <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>BLUE DAY LUNCH</Text>
+                            <RadioGroup onChange={((e) => {setSettingsPending({...settingsPending, blueDay: e}) }) } value={settingsPending['blueDay']}>
                                 <Stack direction="row">
                                     <Radio value="A">A Lunch</Radio>
                                     <Radio value="B">B Lunch</Radio>
@@ -97,7 +107,7 @@ const Navbar = () => {
                         onClose()
                         setSettings(settingsPending)
                         localStorage.setItem('scheduleSettings', JSON.stringify(settingsPending))
-                        //window.location.reload()
+                        
                     }}>
                         Save
                     </Button>

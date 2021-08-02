@@ -13,7 +13,7 @@ import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined, PlayCircl
 const App = () => {
 
   const settingsFromStorage = localStorage.getItem('scheduleSettings')
-  if(!settingsFromStorage){localStorage.setItem('scheduleSettings', JSON.stringify({lunch: 'A', display: 'Timer'}))}
+  if(!settingsFromStorage){localStorage.setItem('scheduleSettings', JSON.stringify({royalDay: 'A', blueDay: 'A', display: 'Timer'}))}
   
   
   const [view, setView] = useState("clock")
