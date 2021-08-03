@@ -21,9 +21,16 @@ const Schedule = () => {
 
     useEffect(() => {
         getSchedule().then((response) => {
-            const fetchedSchedule = response.data.data.data
-            setSchedule(fetchedSchedule)
-            setLoading(false)
+            if(response.data.data.Type == "Special") {
+                setSchedule(response.data.data.ScheduleData.data)
+                setLoading(false)
+                
+
+            } else {
+                const fetchedSchedule = response.data.data.data
+                setSchedule(fetchedSchedule)
+                setLoading(false)
+            }
         })
     }, [])
 

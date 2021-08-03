@@ -6,7 +6,9 @@ import BottomNav from  './Components/BottomNav'
 import Schedule from  './Components/Schedule'
 import News from  './Components/News'
 import Events from  './Components/Events'
+
 import Announcements from  './Components/Announcements'
+import SpecialToast from  './Components/SpecialToast'
 
 import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined, PlayCircleOutlined } from '@ant-design/icons';
 
@@ -15,7 +17,9 @@ const App = () => {
   const settingsFromStorage = localStorage.getItem('scheduleSettings')
   if(!settingsFromStorage){localStorage.setItem('scheduleSettings', JSON.stringify({royalDay: 'A', blueDay: 'A', display: 'Timer'}))}
   
-  
+  const seenEvents = localStorage.getItem('seen-events')
+  if(!seenEvents){localStorage.setItem('seen-events', JSON.stringify([]))}
+
   const [view, setView] = useState("clock")
     
 
@@ -33,7 +37,7 @@ const App = () => {
         {view == "news" && <News/>}
         {view == "events" && <Events/>}
         
-        
+        <SpecialToast />
 
       </div>
     </>

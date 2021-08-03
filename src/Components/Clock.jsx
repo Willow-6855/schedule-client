@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {use100vh} from 'react-div-100vh'
 
 import dayjs from 'dayjs'
@@ -31,6 +31,7 @@ const Clock = () => {
     const [nextPeriod, setNextPeriod] = useState(null)
     const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
     const [status, setStatus] = useState('LOADING')
+    const [noSchoolText, setNoSchoolText] = useState(null)
 
 
 
@@ -71,19 +72,19 @@ const Clock = () => {
             text: "Weekend",
             image: Morning
         },
-        E_LEARNING_MORNING: {
+        CUSTOM_EVENT_MORNING: {
             text: "E-Learning Friday",
             image: Morning
         },
-        E_LEARNING_DAYTIME: {
+        CUSTOM_EVENT_DAYTIME: {
             text: "E-Learning Friday",
             image: Daytime
         },
-        E_LEARNING_SUNDOWN: {
+        CUSTOM_EVENT_SUNDOWN: {
             text: "E-Learning Friday",
             image: Sundown
         },
-        E_LEARNING_NIGHT: {
+        CUSTOM_EVENT_NIGHT: {
             text: "E-Learning Friday",
             image: Night
         },
@@ -164,7 +165,7 @@ const Clock = () => {
         
     }
     
-    
+
     
     const fetchSchedule = async () => {
         
@@ -172,14 +173,33 @@ const Clock = () => {
         
         getSchedule().then((response) => {
             const returnResponse = response.data
+            console.log(returnResponse.data)
             
+            if(returnResponse.data.Type == "Special"){
+                const scheduleData = returnResponse.data.ScheduleData
+                const eventData = returnResponse.data.EventData
+                
+
+                const typeOfDay = scheduleData.SpecialType
+                
+                console.log(eventData.NoSchoolText)
+                if(eventData.NoSchoolText){
+                    setNoSchoolText(eventData.NoSchoolText)
+                }
+
+                localStorage.setItem('day-type', typeOfDay)
+                
+                fetchedSchedule = scheduleData.data
+            }else {
+                const typeOfDay = returnResponse.data.Type
+                localStorage.setItem('day-type', typeOfDay)
+                
+                fetchedSchedule = returnResponse.data.data
+            }
             
-            const typeOfDay = returnResponse.data.Type
-            localStorage.setItem('day-type', typeOfDay)
 
 
             
-            fetchedSchedule = returnResponse.data.data
             
             
             
@@ -258,7 +278,14 @@ const Clock = () => {
     }, [localStorage.getItem('scheduleSettings')])
 
     const lunchStatus = () => {
-        let userLunchPeriod = period.lunchPeriods[settings.lunch]
+        let userLunchPeriod
+        if(localStorage.getItem('day-type') == "Royal"){
+            userLunchPeriod = period.lunchPeriods[settings.royalDay]
+            
+        }else {
+            userLunchPeriod = period.lunchPeriods[settings.blueDay]
+            
+        }
         
         if(userLunchPeriod.startTimeUnix <= currentTime  && currentTime <= userLunchPeriod.endTimeUnix ){
             return('DURING')
@@ -327,7 +354,7 @@ const Clock = () => {
             <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
 
                 <div style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
-                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{statusTextData[status]['text']}</h1>
+                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{noSchoolText ? noSchoolText :  statusTextData[status]['text']}</h1>
                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
                 </div>
                 <img src={statusTextData[status]['image']} className="bright" style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
@@ -336,7 +363,9 @@ const Clock = () => {
 
         :
 
-            <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}><Text>Loading...</Text></div>
+            <div style={{ height:vh-250, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
+                <CircularProgress isIndeterminate size={mobile ? window.innerWidth * .5 : 150} thickness={2.5}/>
+            </div>
     )
 }
 

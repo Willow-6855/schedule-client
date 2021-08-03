@@ -28,8 +28,16 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
 
 
         if(period.lunchPeriods){
+            let userLunchPeriod
+            if(localStorage.getItem('day-type') == "Royal"){
+                userLunchPeriod = period.lunchPeriods[settings.royalDay]
+                
+            }else {
+                userLunchPeriod = period.lunchPeriods[settings.blueDay]
+                
+            }
 
-            let userLunchPeriod = period.lunchPeriods[settings.lunch]
+            
 
 
             switch (lunchStatus()) {
