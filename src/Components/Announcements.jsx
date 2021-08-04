@@ -8,9 +8,9 @@ const Announcements = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
     useEffect(() => {
-        if(!localStorage.getItem('announcement-1')){
+        if(!localStorage.getItem('announcement-2')){
             onOpen()
-            localStorage.setItem('announcement-1', 'seen')
+            localStorage.setItem('announcement-2', 'seen')
         }
     }, [])
 
@@ -24,11 +24,12 @@ const Announcements = () => {
                 <ModalBody>
                     <Text>Welcome to the all NEW Schedule App! We've taken feedback from you seriously and implemented new features incuding added stability, dark mode, and more!</Text>
                     <br></br>
-                    <Text >Please leave any feedback <a style={{color: "#1890ff"}} href="https://forms.gle/ppXB97gXhMb3AuAT9" target="_blank">here</a>!</Text>
+                    <Text>Set your lunch period in the settings tab to personalize your experience with the app and also check out our new dark mode!</Text>
                     <br></br>
-                    <Text >The HSE Apps team wishes you a great summer break!</Text>
+                    <Text >Please leave any feedback <a style={{color: "#1890ff"}} href="https://forms.gle/ppXB97gXhMb3AuAT9" target="_blank">here</a></Text>
                     <br></br>
-                    <Text fontSize="sm">The app is still under construction, and not all features are ready to be relaunched again, but the core functionality does still work.</Text>
+                    <Text fontWeight="bold">The HSE Apps welcomes you back and wishes you a good year!</Text>
+                    <br></br>
                 </ModalBody>
 
                 <ModalFooter>
