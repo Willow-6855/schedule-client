@@ -32,7 +32,7 @@ const Clock = () => {
     const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
     const [status, setStatus] = useState('LOADING')
     const [noSchoolText, setNoSchoolText] = useState(null)
-
+    const [lunchPeriod, setLunchPeriod] = useState()
 
 
     const statusTextData = {
@@ -281,9 +281,11 @@ const Clock = () => {
         let userLunchPeriod
         if(localStorage.getItem('day-type') == "Royal"){
             userLunchPeriod = period.lunchPeriods[settings.royalDay]
+            setLunchPeriod(userLunchPeriod)
             
         }else {
             userLunchPeriod = period.lunchPeriods[settings.blueDay]
+            setLunchPeriod(userLunchPeriod)
             
         }
         
@@ -306,7 +308,7 @@ const Clock = () => {
 
         if(period.lunchPeriods){
 
-            let userLunchPeriod = period.lunchPeriods[settings.lunch]
+            let userLunchPeriod = lunchPeriod
 
             switch (lunchStatus()) {
                 case 'DURING':
