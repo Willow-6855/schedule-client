@@ -33,6 +33,7 @@ const Clock = () => {
     const [status, setStatus] = useState('LOADING')
     const [noSchoolText, setNoSchoolText] = useState(null)
     const [lunchPeriod, setLunchPeriod] = useState()
+    
 
 
     const statusTextData = {
@@ -173,7 +174,7 @@ const Clock = () => {
         
         getSchedule().then((response) => {
             const returnResponse = response.data
-            console.log(returnResponse.data)
+            
             
             if(returnResponse.data.Type == "Special"){
                 const scheduleData = returnResponse.data.ScheduleData
@@ -182,7 +183,7 @@ const Clock = () => {
 
                 const typeOfDay = scheduleData.SpecialType
                 
-                console.log(eventData.NoSchoolText)
+                
                 if(eventData.NoSchoolText){
                     setNoSchoolText(eventData.NoSchoolText)
                 }
@@ -281,11 +282,12 @@ const Clock = () => {
         let userLunchPeriod
         if(localStorage.getItem('day-type') == "Royal"){
             userLunchPeriod = period.lunchPeriods[settings.royalDay]
-            setLunchPeriod(userLunchPeriod)
+            setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
             
         }else {
             userLunchPeriod = period.lunchPeriods[settings.blueDay]
-            setLunchPeriod(userLunchPeriod)
+            setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+            
             
         }
         
@@ -298,26 +300,28 @@ const Clock = () => {
         }
 
     }
-
-
+    
+    
     const genText = () => { 
 
-
+        
         
         let diffFromEnd;
-
+        
+        
         if(period.lunchPeriods){
 
             let userLunchPeriod = lunchPeriod
-
+            
             switch (lunchStatus()) {
+                
                 case 'DURING':
                     diffFromEnd = userLunchPeriod.endTimeUnix - currentTime
                     break;
             
                 case 'BEFORE':
                     diffFromEnd = userLunchPeriod.startTimeUnix - currentTime
-                    break;
+                    break; 
 
                 case "AFTER":
                     diffFromEnd = period.endTimeUnix - currentTime
