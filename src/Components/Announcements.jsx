@@ -24,9 +24,9 @@ const Announcements = () => {
                 <ModalBody>
                     <Text>With all lunch periods being packed with students, the school has made the decision to create a 4th lunch period, D lunch</Text>
                     <br></br>
-                    <Text>This new lunch period will still be in Period 3, shortening all other lunch periods slightly to fit in D lunch.</Text>
+                    <Text>This new lunch period will still be in Period 3.</Text>
                     <br></br>
-                    <Text>Check Skyward to see your updated lunch period and make sure to set it in this app</Text>
+                    <Text>Skyward will be updated on Saturday to include your updated lunch period. Also make sure to set it in this app</Text>
                     <br></br>
                     <Text fontWeight="bold">The updated Bell Schedule and lunch assignments will be in effect starting on Monday, August 9th</Text>
                     <br></br>
