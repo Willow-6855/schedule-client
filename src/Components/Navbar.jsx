@@ -56,6 +56,7 @@ const Navbar = () => {
                                     <Radio value="A">A Lunch</Radio>
                                     <Radio value="B">B Lunch</Radio>
                                     <Radio value="C">C Lunch</Radio>
+                                    <Radio value="D" disabled>D Lunch</Radio>
                                 </Stack>
                             </RadioGroup>
                         </div>  
@@ -66,6 +67,7 @@ const Navbar = () => {
                                     <Radio value="A">A Lunch</Radio>
                                     <Radio value="B">B Lunch</Radio>
                                     <Radio value="C">C Lunch</Radio>
+                                    <Radio value="D" disabled>D Lunch</Radio>
                                 </Stack>
                             </RadioGroup>
                         </div>

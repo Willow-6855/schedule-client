@@ -8,9 +8,9 @@ const Announcements = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
     useEffect(() => {
-        if(!localStorage.getItem('announcement-2')){
+        if(!localStorage.getItem('announcement-3')){
             onOpen()
-            localStorage.setItem('announcement-2', 'seen')
+            localStorage.setItem('announcement-3', 'seen')
         }
     }, [])
 
@@ -19,16 +19,16 @@ const Announcements = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                <ModalHeader>Announcement</ModalHeader>
+                <ModalHeader>4th Lunch Period</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Text>Welcome to the all NEW Schedule App! We've taken feedback from you seriously and implemented new features incuding added stability, dark mode, and more!</Text>
+                    <Text>With all lunch periods being packed with students, the school has made the decision to create a 4th lunch period, D lunch</Text>
                     <br></br>
-                    <Text>Set your lunch period in the settings tab to personalize your experience with the app and also check out our new dark mode!</Text>
+                    <Text>This new lunch period will still be in Period 3.</Text>
                     <br></br>
-                    <Text >Please leave any feedback <a style={{color: "#1890ff"}} href="https://forms.gle/ppXB97gXhMb3AuAT9" target="_blank">here</a></Text>
+                    <Text>Skyward will be updated on Saturday to include your updated lunch period. Also make sure to set it in this app</Text>
                     <br></br>
-                    <Text fontWeight="bold">The HSE Apps welcomes you back and wishes you a good year!</Text>
+                    <Text fontWeight="bold">The updated Bell Schedule and lunch assignments will be in effect starting on Monday, August 9th</Text>
                     <br></br>
                 </ModalBody>
 
