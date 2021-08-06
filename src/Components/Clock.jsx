@@ -311,7 +311,17 @@ const Clock = () => {
         
         if(period.lunchPeriods){
 
-            let userLunchPeriod = lunchPeriod
+            let userLunchPeriod
+            if(localStorage.getItem('day-type') == "Royal"){
+                userLunchPeriod = period.lunchPeriods[settings.royalDay]
+                setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+                
+            }else {
+                userLunchPeriod = period.lunchPeriods[settings.blueDay]
+                setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+                
+                
+            }
             
             switch (lunchStatus()) {
                 
