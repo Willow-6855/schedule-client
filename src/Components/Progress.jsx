@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {use100vh} from 'react-div-100vh'
 import useMedia from '../Hooks/useMedia'
@@ -17,6 +17,19 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
 
     const vh = use100vh()
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
+    const [lunchText, setLunchText] = useState()
+
+    useEffect(() => {
+        const dayType = localStorage.getItem("day-type")
+        
+        if(dayType == "Royal"){
+            setLunchText(settings.royalDay)
+        }else {
+            setLunchText(settings.blueDay)
+
+        }
+        console.log(dayType)
+    }, [])
 
     const genPercent = () => {
 
@@ -89,7 +102,7 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
                             {period.lunchPeriods ?
                                     <>
                                         {lunchStatus() == "DURING" ? 
-                                            settings.lunch + ' Lunch'
+                                            lunchText + ' Lunch'
                                         :
                                             period.periodName
                                         }
@@ -106,7 +119,7 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
                             <>
                                 {period.isPassing ? 
 
-                                nextPeriod?.lunchPeriods && settings.lunch == "A" ?
+                                nextPeriod?.lunchPeriods && lunchText == "A" ?
                                 <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop:"0px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
 
                                 :
@@ -116,8 +129,8 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
                                     <>
                                     {period.lunchPeriods ?
                                         {
-                                            'DURING':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
-                                            'BEFORE':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
+                                            'DURING':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}> Until {lunchText} Lunch Ends </Text>,
+                                            'BEFORE':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>Until {lunchText} Lunch Begins</Text>,
                                             'AFTER':  <Text type="secondary" style={{color: "grey", fontSize: mobile ? "1.3rem" : "1.4rem", marginTop: "0x", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
                                         }[lunchStatus()]
                                     :
@@ -134,7 +147,7 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
                                 {genText()} {period.lunchPeriods ? 
                                     {
                                         'DURING':   <>Until Lunch Ends </> ,
-                                        'BEFORE':  <>Until {settings.lunch} Lunch </>,
+                                        'BEFORE':  <>Until {lunchText} Lunch </>,
                                         'AFTER':  <>{nextPeriod ? `Until Period Ends` : "Until School Ends"}</>
                                     }[lunchStatus()]
                                     :
