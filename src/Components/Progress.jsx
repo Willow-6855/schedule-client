@@ -28,7 +28,7 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
             setLunchText(settings.blueDay)
 
         }
-        console.log(dayType)
+        
     }, [])
 
     const genPercent = () => {

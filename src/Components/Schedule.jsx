@@ -53,8 +53,8 @@ const Schedule = () => {
 
     return (
         <>
-  
         <div initial="hidden" animate="visible" style={{height:vh-200, display: 'flex', justifyContent: "center", flexDirection: 'column', alignItems: 'center', width: "100%", maxHeight: vh * .85, overflowY: "scroll", overflowX: 'hidden', padding: '20px 0px', margin: '40px 0px'}}>
+            <Text fontSize="xl">Today is a <span style={{color: localStorage.getItem('day-type') == "Royal" ? "#0072c7" : "#b7cee7"}}>Blue</span> Day</Text>
 
             {!loading ?
                 schedule.map((period) => { 
@@ -80,7 +80,7 @@ const Schedule = () => {
                                         return(
                                             <MotionBox
                                                 whileHover={{x:3}}
-                                                style={{boxShadow: lunch == lunchType ? "2px 2px 15px #ffdb58 " : " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
+                                                style={{boxShadow: lunch == lunchType ? "2px 2px 15px #ffdb58 " : " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '24%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
                                             >
                                                 <div>
                                                     <Text fontSize="2xl"  level={mobile ? 4 : 3} style={{color: colorMode == "dark" ? "white" : "#333", marginBottom: '0px'}}>{lunch}</Text>
