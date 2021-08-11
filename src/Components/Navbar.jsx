@@ -6,11 +6,11 @@ import { Modal, ModalOverlay,ModalContent, ModalHeader, ModalFooter, ModalBody, 
 import { SettingOutlined, GithubOutlined, InstagramOutlined, TeamOutlined } from '@ant-design/icons';
 import { ChatIcon } from '@chakra-ui/icons'
 
-
 import logo from '../Assets/hseapps.png'
-
+import useMedia from '../Hooks/useMedia'
 
 const Navbar = ({fullView, setFullView}) => {
+    const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
     
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
@@ -96,11 +96,14 @@ const Navbar = ({fullView, setFullView}) => {
                             
                             <Switch isChecked={colorMode == "dark" ? true : false} onChange={toggleColorMode} size="lg"></Switch>
                         </div>
-                        <div style={{marginTop: "3px",  marginBottom: "20px"}}>
-                            <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>FULL SCREEN MODE </Text>
-                            
-                            <Switch isChecked={fullView} onChange={toggleFullView} size="lg"></Switch>
-                        </div>
+                        {
+                            !mobile &&
+                            <div style={{marginTop: "3px",  marginBottom: "20px"}}>
+                                <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>FULL SCREEN MODE </Text>
+                                
+                                <Switch isChecked={fullView} onChange={toggleFullView} size="lg"></Switch>
+                            </div>
+                        }
 
                     </Stack>
 
