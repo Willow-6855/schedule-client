@@ -54,7 +54,7 @@ const Schedule = () => {
     return (
         <>
         <div initial="hidden" animate="visible" style={{height:vh-200, display: 'flex', justifyContent: "center", flexDirection: 'column', alignItems: 'center', width: "100%", maxHeight: vh * .85, overflowY: "scroll", overflowX: 'hidden', padding: '20px 0px', margin: '40px 0px'}}>
-            <Text fontSize="xl">Today is a <span style={{color: localStorage.getItem('day-type') == "Royal" ? "#0072c7" : "#b7cee7"}}>Blue</span> Day</Text>
+        <Text fontSize="xl" style={{textAlign:"center", marginTop: vh * 0.01}}>Today is a <span style={{color: localStorage.getItem('day-type') == "Royal" ? "#0072c7" : "#b7cee7"}}>{localStorage.getItem('day-type')}</span> Day</Text>
 
             {!loading ?
                 schedule.map((period) => { 
