@@ -22,7 +22,7 @@ const App = () => {
   if(!seenEvents){localStorage.setItem('seen-events', JSON.stringify([]))}
 
   const [view, setView] = useState("clock")
-  const [fullView, setFullView] = useState(localStorage.getItem('fullView') ? localStorage.getItem('fullView') : false)
+  const [fullView, setFullView] = useState(localStorage.getItem('fullView') !== null ? localStorage.getItem('fullView') : false)
 
   return (
     <>
