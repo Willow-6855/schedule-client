@@ -45,7 +45,7 @@ const News = () => {
                 newsCasts.slice(0,10).map((cast) => {
                     const date = dayjs(cast.date)
                     return(
-                        <a key={cast.date} target="_blank" style={{width: "80%",maxWidth: "500px", display: 'block'}} href={cast.link}>
+                        <a key={cast.date} target="_blank" style={{width: "80%",maxWidth: "700px", display: 'block'}} href={cast.link}>
                         <MotionBox
                         whileHover={{x:10}}
                         style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "100%", height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}

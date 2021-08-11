@@ -6,6 +6,7 @@ import BottomNav from  './Components/BottomNav'
 import Schedule from  './Components/Schedule'
 import News from  './Components/News'
 import Events from  './Components/Events'
+import Food from  './Components/Food'
 
 import Announcements from  './Components/Announcements'
 import SpecialToast from  './Components/SpecialToast'
@@ -36,6 +37,7 @@ const App = () => {
         {view == "schedule" && <Schedule/>}
         {view == "news" && <News/>}
         {view == "events" && <Events/>}
+        {view == "food" && <Food/>}
         
         <SpecialToast />
 
