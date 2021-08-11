@@ -27,12 +27,12 @@ const Navbar = ({fullView, setFullView}) => {
     const toggleFullView = () => {
         if(fullView){ 
             setFullView(false)
-            const screen = document.documentElement;
-            screen.requestFullscreen().catch(() => {})
+            document.exitFullscreen().catch(() => {})
             localStorage.setItem('fullView', false)
         }else{
             setFullView(true)
-            document.exitFullscreen().catch(() => {})
+            const screen = document.documentElement;
+            screen.requestFullscreen().catch(() => {})
             localStorage.setItem('fullView', true)
         }
     }
