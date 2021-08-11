@@ -75,9 +75,9 @@ const Food = () => {
                                         
                                     }
                                     </UnorderedList>
+                                    <br style={{marginTop:"30px"}}></br>    
                                 </>
                             }
-                            <br style={{marginTop:"30px"}}></br>
 
                             <Text fontSize="3xl" fontWeight="bold">Special Today:</Text>
                             <UnorderedList>
