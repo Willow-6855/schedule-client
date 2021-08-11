@@ -9,7 +9,7 @@ import dayjs from 'dayjs'
 import { Box, Text, useColorMode, CircularProgress, VStack, Stack, HStack } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
-const Schedule = () => {
+const Schedule = (props) => {
 
     const MotionBox = motion(Box)
     const vh = use100vh()
@@ -80,7 +80,7 @@ const Schedule = () => {
                                         return(
                                             <MotionBox
                                                 whileHover={{x:3}}
-                                                style={{boxShadow: lunch == lunchType ? "2px 2px 15px #ffdb58 " : " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '24%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
+                                                style={{boxShadow: !props.overrideLunch && lunch == lunchType ? "2px 2px 15px #ffdb58 " : " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '24%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}
                                             >
                                                 <div>
                                                     <Text fontSize="2xl"  level={mobile ? 4 : 3} style={{color: colorMode == "dark" ? "white" : "#333", marginBottom: '0px'}}>{lunch}</Text>

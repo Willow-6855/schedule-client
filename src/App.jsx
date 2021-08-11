@@ -22,18 +22,18 @@ const App = () => {
   if(!seenEvents){localStorage.setItem('seen-events', JSON.stringify([]))}
 
   const [view, setView] = useState("clock")
-    
+  const [fullView, setFullView] = useState(localStorage.getItem('fullView') ? localStorage.getItem('fullView') : false)
 
   return (
     <>
     
       <div>
 
-        <Navbar/>
-        <BottomNav setView={setView} view={view}/>
+        <Navbar fullView={fullView} setFullView={setFullView}/>
+        {!fullView && <BottomNav setView={setView} view={view}/>}
         <Announcements />
 
-        {view == "clock" && <Clock/>}
+        {view == "clock" && <Clock fullView={fullView} setFullView={setFullView}/>}
         {view == "schedule" && <Schedule/>}
         {view == "news" && <News/>}
         {view == "events" && <Events/>}

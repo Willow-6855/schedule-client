@@ -10,7 +10,7 @@ import { ChatIcon } from '@chakra-ui/icons'
 import logo from '../Assets/hseapps.png'
 
 
-const Navbar = () => {
+const Navbar = ({fullView, setFullView}) => {
     
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
@@ -24,6 +24,16 @@ const Navbar = () => {
         setSettingsPending(settings)
     }
     
+    const toggleFullView = () => {
+        if(fullView){ 
+            setFullView(false)
+            localStorage.setItem('fullView', false)
+        }else{
+            setFullView(true)
+            localStorage.setItem('fullView', true)
+        }
+    }
+
     return(
         <div style={{zIndex: "2"}}>
             
@@ -85,6 +95,11 @@ const Navbar = () => {
                             <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>DARK MODE </Text>
                             
                             <Switch isChecked={colorMode == "dark" ? true : false} onChange={toggleColorMode} size="lg"></Switch>
+                        </div>
+                        <div style={{marginTop: "3px",  marginBottom: "20px"}}>
+                            <Text strong style={{fontSize: "10px", marginBottom: "10px"}}>FULL SCREEN MODE </Text>
+                            
+                            <Switch isChecked={fullView} onChange={toggleFullView} size="lg"></Switch>
                         </div>
 
                     </Stack>

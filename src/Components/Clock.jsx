@@ -14,6 +14,8 @@ import Daytime from '../Assets/Landscapes/Daytime.png'
 import Sundown from '../Assets/Landscapes/Sundown.png'
 import Night from '../Assets/Landscapes/Night.png'
 
+import Schedule from './Schedule'
+
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
 var duration = require('dayjs/plugin/duration')
@@ -21,7 +23,7 @@ var duration = require('dayjs/plugin/duration')
 dayjs.extend(customParseFormat)
 dayjs.extend(duration)
 
-const Clock = () => {
+const Clock = ({fullView, setFullView}) => {
 
     const vh = use100vh()
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
@@ -362,7 +364,20 @@ const Clock = () => {
     return (
         status == "SCHOOL_NOW" ? 
         
-        <Progress genText={genText} period={period} nextPeriod={nextPeriod} settings={settings} lunchStatus={lunchStatus} currentTime={currentTime}/>
+        
+            !fullView ?
+            
+                <Progress genText={genText} period={period} nextPeriod={nextPeriod} settings={settings} lunchStatus={lunchStatus} currentTime={currentTime}/>
+                
+                :
+                <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center',     justifyContent: 'center'}}>
+                    <div style={{ height:vh-120, display: "flex", flexDirection:"column", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
+                        <Progress genText={genText} period={period} nextPeriod={nextPeriod} settings={settings} lunchStatus={lunchStatus} currentTime={currentTime}/>
+                    </div>
+                    <div style={{ height:vh-120, display: "flex", flexDirection:"column", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
+                        <Schedule overrideLunch={true}/>
+                    </div>
+                </div>
    
         :
         

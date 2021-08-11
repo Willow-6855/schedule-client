@@ -29,7 +29,8 @@ const Progress = ({genText, period, nextPeriod, settings, lunchStatus, currentTi
 
         }
         
-    }, [])
+    }, [localStorage.getItem('scheduleSettings')])
+
 
     const genPercent = () => {
 
