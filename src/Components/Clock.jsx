@@ -367,7 +367,7 @@ const Clock = ({fullView, setFullView}) => {
         
             !fullView ?
             
-                <Progress genText={genText} period={period} nextPeriod={nextPeriod} settings={settings} lunchStatus={lunchStatus} currentTime={currentTime}/>
+                <Progress genText={genText} period={period} nextPeriod={nextPeriod} settings={settings} lunchStatus={lunchStatus} currentTime={currentTime} style={{zIndex: "-1"}}/>
                 
                 :
                 <div style={{ height:vh-120, display: "flex", flexDirection:"row", width: "100%", alignItems: 'center',     justifyContent: 'center'}}>

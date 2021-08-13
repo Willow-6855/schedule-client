@@ -17,20 +17,20 @@ const BottomNav = (props) => {
     if(colorMode == 'dark'){
         colorTheme = {
             selectedBackground: "#222831",
-            unselectedBackground: "transparent",
+            unselectedBackground: "#20252e",
             boxShadow: "2px 2px 10px rgb(0,118,220,0.32)"
         }
     } else if (colorMode == 'light'){
         colorTheme = {
             selectedBackground: "white",
-            unselectedBackground: "transparent",
+            unselectedBackground: "#f8f8f8",
             boxShadow: "2px 2px 10px rgb(0,118,220,0.32)"
         }
     }
 
     return (
 
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%", position: 'fixed', bottom: '30px',marginTop: "20px"}}>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%", position: 'fixed', bottom: '30px',marginTop: "20px", zIndex: "1"}}>
           
 
             <div style={{display: 'flex', zIndex: 4, boxShadow: "2px 2px 10px rgb(0,118,220,0.2)", borderRadius: "10px"}}>
