@@ -8,9 +8,9 @@ const Announcements = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
     useEffect(() => {
-        if(!localStorage.getItem('announcement-3')){
+        if(!localStorage.getItem('announcement-4')){
             onOpen()
-            localStorage.setItem('announcement-3', 'seen')
+            localStorage.setItem('announcement-4', 'seen')
         }
     }, [])
 
@@ -19,17 +19,16 @@ const Announcements = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                <ModalHeader>4th Lunch Period</ModalHeader>
+                <ModalHeader>HSE News</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Text>With all lunch periods being packed with students, the school has made the decision to create a 4th lunch period, D lunch</Text>
+                    <Text>Hello, Royals! </Text>
                     <br></br>
-                    <Text>This new lunch period will still be in Period 3.</Text>
+                    <Text>It’s your HSETV crew here to remind you that today, during pathways, you will get to see the first newscast of the year! </Text>
                     <br></br>
-                    <Text>Skyward will be updated on Saturday to include your updated lunch period. Also make sure to set it in this app</Text>
+                    <Text>Teachers, please remember to show the newscast at the beginning of pathways after the pledge. You can use the link below to access it:</Text>
                     <br></br>
-                    <Text fontWeight="bold">The updated Bell Schedule and lunch assignments will be in effect starting on Monday, August 9th</Text>
-                    <br></br>
+                    <Text style={{color: "#1890ff"}}><a href="https://www.hsenews.com/?p=21055&preview=true">Newscast Link</a> </Text>
                 </ModalBody>
 
                 <ModalFooter>
