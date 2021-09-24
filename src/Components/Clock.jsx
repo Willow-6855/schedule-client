@@ -261,7 +261,7 @@ const Clock = ({fullView, setFullView}) => {
     
 
     useEffect(() => {
-        fetchSchedule()
+        window.location.reload()
         
     }, [dayjs()["$D"]])
 
