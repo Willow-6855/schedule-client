@@ -178,6 +178,7 @@ const Clock = ({fullView, setFullView}) => {
             const returnResponse = response.data
             
             
+            
             if(returnResponse.data.Type == "Special"){
                 const scheduleData = returnResponse.data.ScheduleData
                 const eventData = returnResponse.data.EventData
