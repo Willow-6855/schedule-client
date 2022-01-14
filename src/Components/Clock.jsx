@@ -284,11 +284,21 @@ const Clock = ({fullView, setFullView}) => {
         let userLunchPeriod
         if(localStorage.getItem('day-type') == "Royal"){
             userLunchPeriod = period.lunchPeriods[settings.royalDay]
-            setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+            schedule.forEach(period => {
+                if(period.lunchPeriods){
+
+                    setLunchPeriod(period.lunchPeriods[userLunchPeriod])
+                }
+            })
             
         }else {
             userLunchPeriod = period.lunchPeriods[settings.blueDay]
-            setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+            schedule.forEach(period => {
+                if(period.lunchPeriods){
+
+                    setLunchPeriod(period.lunchPeriods[userLunchPeriod])
+                }
+            })
             
             
         }
@@ -316,11 +326,21 @@ const Clock = ({fullView, setFullView}) => {
             let userLunchPeriod
             if(localStorage.getItem('day-type') == "Royal"){
                 userLunchPeriod = period.lunchPeriods[settings.royalDay]
-                setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+                schedule.forEach(period => {
+                    if(period.lunchPeriods){
+    
+                        setLunchPeriod(period.lunchPeriods[userLunchPeriod])
+                    }
+                })
                 
             }else {
                 userLunchPeriod = period.lunchPeriods[settings.blueDay]
-                setLunchPeriod(schedule[4].lunchPeriods[userLunchPeriod])
+                schedule.forEach(period => {
+                    if(period.lunchPeriods){
+    
+                        setLunchPeriod(period.lunchPeriods[userLunchPeriod])
+                    }
+                })
                 
                 
             }
