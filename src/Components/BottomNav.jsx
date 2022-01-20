@@ -47,9 +47,9 @@ const BottomNav = (props) => {
                 <div onClick={() => {props.setView("news")}} style={{width: mobile ? "70px" : "80px", height: "45px", display: 'flex' ,justifyContent: 'center', alignItems: "center", background: props.view == "news" ? colorTheme.selectedBackground: colorTheme.unselectedBackground , boxShadow: props.view == "news" ? colorTheme.boxShadow : "none", cursor: 'pointer'}}>
                     <PlayCircleOutlined style={{fontSize: "20px"}}/>
                 </div>
-                <div onClick={() => {props.setView("events")}} style={{width: mobile ? "70px" : "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: props.view == "events" ? colorTheme.selectedBackground: colorTheme.unselectedBackground , boxShadow: props.view == "events" ? colorTheme.boxShadow : "none", cursor: 'pointer'}}>
+                {/* <div onClick={() => {props.setView("events")}} style={{width: mobile ? "70px" : "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: props.view == "events" ? colorTheme.selectedBackground: colorTheme.unselectedBackground , boxShadow: props.view == "events" ? colorTheme.boxShadow : "none", cursor: 'pointer'}}>
                     <CalendarOutlined style={{fontSize: "20px"}}/>
-                </div>
+                </div> */}
 
             </div>
 
