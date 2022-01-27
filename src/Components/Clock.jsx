@@ -261,11 +261,6 @@ const Clock = ({fullView, setFullView}) => {
     }, [schedule])
     
 
-    useEffect(() => {
-        window.location.reload()
-        
-    }, [dayjs()["$D"]])
-
     const timer = () => {
         
         setCurrentTime(dayjs().valueOf())
