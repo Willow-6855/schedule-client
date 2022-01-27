@@ -88,20 +88,22 @@
   }
   
   .calendar .body .selected-royal-day {
-    border: 3px solid #b3ffb3; /* credit to Thomas M. Chilson */
-    background: #4299e18a;
+    background: rgba(134,164,255,0.2);    
+    border-bottom: 10px solid #86a4ff;
   }
 
   .calendar .body .selected-blue-day {
-    border-left: 10px solid #2B6CB0;
-    background: #90cef4ad;
+    border-bottom: 10px solid #c1d0ff;
+    background: rgba(193, 209, 255, 0.2);
   }
 
   .calendar .body .royal-day {
-      background: #4299e18a;
+      border-bottom: 10px solid #86a4ff;
+      background: rgba(0, 0, 0, 0.06);
   }
   .calendar .body .blue-day {
-    background: #90cef4ad;
+    border-bottom: 10px solid #c1d0ff;
+    background: rgba(0, 0, 0, 0.06);
 }
   
   .calendar .body .row:last-child {
@@ -127,10 +129,10 @@
   }
 
   .calendar .body .weekend {
-    color: rgb(212, 167, 255);
+    color: #3182CE;
   }
   .calendar .body {
-      background: rgba(0, 0, 0, 0.05);
+      background: rgba(0, 0, 0, 0.075);
   }
   
   .calendar .body .cell:hover .bg, .calendar .body .selected .bg  {

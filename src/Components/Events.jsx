@@ -151,6 +151,12 @@ const Events = () => {
                 {renderDays()}
                 {renderCells()}
             </div>
+            <div style={{display: 'flex', alignItems: "center", marginTop: "12px"}}>
+                <div style={{width: "24px", height: "24px", background: "#86a4ff", borderRadius: "4px"}} />
+                <p style={{fontWeight: "bold", marginLeft: "4px", marginRight: "8px"}}>Royal day</p>
+                <div style={{width: "24px", height: "24px", background: "#c1d0ff", borderRadius: "4px"}} />
+                <p style={{fontWeight: "bold", marginLeft: "4px"}}>Blue day</p>
+            </div>
         </div>
     )
 };
