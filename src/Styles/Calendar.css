@@ -65,7 +65,6 @@
   
   .calendar .days {
     font-weight: 500;
-    color: var(--text-color-light);
     font-size: 70%;
     padding: .75em 0;
   }
@@ -76,13 +75,20 @@
     overflow: hidden;
     transition: 0.25s ease-out;
   }
+
+  .calendar .body .mobile-cell {
+    position: relative;
+    height: 3em;
+    overflow: hidden;
+    transition: 0.25s ease-out;
+  }
   
   .calendar .body .cell:hover {
     transition: 0.5s ease-out;
   }
   
   .calendar .body .selected-royal-day {
-    border-left: 10px solid #CBD5E0;
+    border: 3px solid #b3ffb3; /* credit to Thomas M. Chilson */
     background: #4299e18a;
   }
 
@@ -121,7 +127,7 @@
   }
 
   .calendar .body .weekend {
-    color: rgb(167, 255, 229);
+    color: rgb(212, 167, 255);
   }
   .calendar .body {
       background: rgba(0, 0, 0, 0.05);

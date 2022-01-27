@@ -6,6 +6,7 @@ import "../Styles/Calendar.css"
 import { Box, Text, useColorMode, CircularProgress, VStack, Stack, HStack, Title } from "@chakra-ui/react"
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { setDate } from 'date-fns/esm';
+import useMedia from '../Hooks/useMedia';
 const dateFns = require('date-fns')
 
 const Events = () => {
@@ -73,6 +74,8 @@ const Events = () => {
         }
     }
 
+    const mobile = useMedia(['(max-width: 450px)'], [true])
+
     const renderCells = () => {
 
         const monthStart = dateFns.startOfMonth(currentMonth);
@@ -97,7 +100,7 @@ const Events = () => {
                 const cloneDay = day;
                 days.push(
                     <div
-                        className={`col cell ${!dateFns.isSameMonth(day, monthStart) ? "disabled" : i == 0 || i == 6 ? "weekend" : isRoyal(parseInt(formattedDate), monthNumber) ? dateFns.isSameDay(day, selectedDate) ? "selected-royal-day" : "royal-day" : dateFns.isSameDay(day, selectedDate) ? "selected-blue-day" : "blue-day"}`}
+                        className={`col ${mobile ? "mobile-cell" : ""} cell ${!dateFns.isSameMonth(day, monthStart) ? "disabled" : i == 0 || i == 6 ? "weekend" : isRoyal(parseInt(formattedDate), monthNumber) ? dateFns.isSameDay(day, selectedDate) ? "selected-royal-day" : "royal-day" : dateFns.isSameDay(day, selectedDate) ? "selected-blue-day" : "blue-day"}`}
                         key={day}
                     >
                         <span className="number">{formattedDate}</span>
@@ -127,9 +130,23 @@ const Events = () => {
         setCurrentMonth(dateFns.subMonths(currentMonth, 1))
     }
 
+
     return (
-        <div style={{ height:vh-120, display: "flex", flexDirection:"column", width: "100%", alignItems: 'center', justifyContent: 'center', padding: '24px'}}>
-            <div className='calendar' id='made-with-<3-by-chris-farber-:)' style={{maxWidth: "50em"}}>
+        <div 
+            style={{ 
+                height: mobile ? vh-300: vh-200, 
+                display: "flex", 
+                flexDirection:"column", 
+                width: "100%", 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                padding: '12px'
+            }}>
+            <div 
+                className='calendar' 
+                id='made-with-<3-by-chris-farber-:)' 
+                style={{maxWidth: "50em"}}
+            >
                 {renderHeader()}
                 {renderDays()}
                 {renderCells()}
