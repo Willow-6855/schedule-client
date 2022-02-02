@@ -20,6 +20,10 @@ const App = () => {
   
   const seenEvents = localStorage.getItem('seen-events')
   if(!seenEvents){localStorage.setItem('seen-events', JSON.stringify([]))}
+  
+  const fullViewStor = localStorage.getItem('fullView')
+  if(fullViewStor){localStorage.removeItem('fullView', false)}
+  
 
   const [fullView, setFullView] = useState(false)
   const currView =  localStorage.getItem('fullView')
@@ -32,8 +36,8 @@ const App = () => {
     
       <div>
 
-        <Navbar fullView={fullView} setFullView={setFullView}/>
-        {!fullView && <BottomNav setView={setView} view={view}/>}
+        <Navbar fullView={false} setFullView={setFullView}/>
+        <BottomNav setView={setView} view={view}/>
         <Announcements />
 
         {view == "clock" && <Clock fullView={fullView} setFullView={setFullView}/>}
