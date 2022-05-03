@@ -8,7 +8,7 @@ const Announcements = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
     useEffect(() => {
-        if(!localStorage.getItem('announcement-6')){
+        if(false){
             onOpen()
             localStorage.setItem('announcement-6', 'seen')
         }
