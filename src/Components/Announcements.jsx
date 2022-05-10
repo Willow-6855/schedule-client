@@ -8,9 +8,9 @@ const Announcements = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     
     useEffect(() => {
-        if(false){
+        if(!localStorage.getItem('announcement-11')){
             onOpen()
-            localStorage.setItem('announcement-6', 'seen')
+            localStorage.setItem('announcement-11', 'seen')
         }
     }, [])
 
@@ -22,18 +22,15 @@ const Announcements = () => {
                 <ModalHeader>HSE News</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Text>Good morning, Royals! </Text>
+                    <Text>Happy Adam Sandler Day! </Text>
                     <br></br>
-                    <Text>The calendar feature is finally implemented! It's not perfect but should be fine for the time being :)</Text>
-                    <br></br>
-                    <Text>Go to the calendar tab on the bottom navigation menu to see a layout of all the royal and blue days!</Text>
-                    <br></br>
+                    <img src="https://www.highsnobiety.com/static-assets/thumbor/SXbsUkCaRWjLAt7gYKByA8AagBA=/1600x2400/www.highsnobiety.com/static-assets/wp-content/uploads/2021/12/08155944/adam-s-04.jpg" />
                 </ModalBody>
 
                 <ModalFooter>
                     
                     <Button colorScheme="blue" mr={3} onClick={onClose}>
-                        Ok
+                        I want to be like him.
                     </Button>
                 </ModalFooter>
                 </ModalContent>
