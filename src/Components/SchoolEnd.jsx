@@ -18,14 +18,15 @@ const SchoolEnd = () => {
   );
   const vh = use100vh();
 
-  const beginDate = dayjs("2022-05-16:00:00:00");
-  const endDate = dayjs("2022-05-20:15:00:00");
+  const beginDate = dayjs("2022-08-03:00:00:00");
+  const endDate = dayjs("2023-05-25:15:00:00");
   const range = endDate - beginDate;
   const fromStart = dayjs().diff(beginDate);
   const toEnd = endDate - dayjs();
 
   const percent = (fromStart / range) * 100;
 
+  let monthsLeft = dayjs.duration(toEnd, "ms").months();
   let daysLeft = dayjs.duration(toEnd, "ms").days();
   let hoursLeft = dayjs.duration(toEnd, "ms").hours();
   let minutesLeft = dayjs.duration(toEnd, "ms").minutes();
@@ -33,7 +34,7 @@ const SchoolEnd = () => {
 
   const genText = () => {
     //setText(theText);
-    return `${daysLeft > 0 ? `${daysLeft}:` : ""}${
+    return `${monthsLeft}:${daysLeft > 0 ? `${daysLeft}:` : ""}${
       hoursLeft > 0 ? hoursLeft + ":" : ""
     }${
       minutesLeft > 9
