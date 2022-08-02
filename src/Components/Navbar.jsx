@@ -126,7 +126,7 @@ const Navbar = ({ fullView, setFullView }) => {
               </div>
               <div style={{ marginTop: "3px", marginBottom: "20px" }}>
                 <Text strong style={{ fontSize: "10px", marginBottom: "10px" }}>
-                  BLUE DAY LUNCH
+                  GRAY DAY LUNCH
                 </Text>
                 <RadioGroup
                   onChange={(e) => {
