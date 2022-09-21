@@ -20,9 +20,10 @@ const Announcements = () => {
 
   useEffect(() => {
     getAnnouncements().then((res) => {
+      console.log(res.data);
       if (
         localStorage.getItem("announcement") !== res.data._id &&
-        res.data !== {}
+        res.data._id
       ) {
         if (res.data) {
           setMessage(res.data);
