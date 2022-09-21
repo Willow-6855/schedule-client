@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { use100vh } from "react-div-100vh";
 
 import { getSchedule } from "../API/api";
@@ -8,12 +8,12 @@ import dayjs from "dayjs";
 
 import {
   Box,
+  CircularProgress,
+  HStack,
+  Stack,
   Text,
   useColorMode,
-  CircularProgress,
   VStack,
-  Stack,
-  HStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
