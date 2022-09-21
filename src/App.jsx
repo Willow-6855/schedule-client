@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import Navbar from "./Components/Navbar";
-import Clock from "./Components/Clock";
 import BottomNav from "./Components/BottomNav";
-import Schedule from "./Components/Schedule";
-import News from "./Components/News";
+import Clock from "./Components/Clock";
 import Events from "./Components/Events";
 import Food from "./Components/Food";
+import Navbar from "./Components/Navbar";
+import News from "./Components/News";
+import Schedule from "./Components/Schedule";
 import SchoolEnd from "./Components/SchoolEnd";
 
 import Announcements from "./Components/Announcements";
@@ -15,8 +15,8 @@ import SpecialToast from "./Components/SpecialToast";
 import {
   CalendarOutlined,
   ClockCircleOutlined,
-  UnorderedListOutlined,
   PlayCircleOutlined,
+  UnorderedListOutlined,
 } from "@ant-design/icons";
 
 const App = () => {
@@ -27,7 +27,9 @@ const App = () => {
       JSON.stringify({ royalDay: "A", grayDay: "A", display: "Timer" })
     );
   }
-  if (JSON.parse(settingsFromStorage).blueDay) {
+  try {
+    let temp = JSON.parse(settingsFromStorage).blueDay;
+  } catch {
     localStorage.removeItem("scheduleSettings");
     localStorage.setItem(
       "scheduleSettings",
