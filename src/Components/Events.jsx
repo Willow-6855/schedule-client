@@ -16,7 +16,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { setDate } from "date-fns/esm";
 import useMedia from "../Hooks/useMedia";
-import calen from "../Assets/Calendarimg.jpg";
+import calendarImg from "../Assets/Calendar.jpg";
 const dateFns = require("date-fns");
 
 const Events = () => {
@@ -145,7 +145,7 @@ const Events = () => {
 
   return (
     <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-      <img src={calen} />
+      <img src={calendarImg} />
     </div>
   );
   return (
