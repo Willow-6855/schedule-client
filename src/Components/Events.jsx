@@ -26,7 +26,7 @@ const Events = () => {
   const [startDay, setStartDay] = useState("royal");
 
   const renderHeader = () => {
-    const dateFormat = "MMMM yyyy";
+    const dateFormat = "MMM yyyy";
     return (
       <div className="header row flex-middle">
         <div className="col col-start">
@@ -35,7 +35,7 @@ const Events = () => {
           </div>
         </div>
         <div className="col col-center">
-          <span>{dateFns.format(currentMonth, dateFormat)}</span>
+          <span>{dateFns.format(currentMonth, dateFormat).toUpperCase()}</span>
         </div>
         <div className="col col-end" onClick={nextMonth}>
           <div className="icon">
@@ -143,11 +143,11 @@ const Events = () => {
     setCurrentMonth(dateFns.subMonths(currentMonth, 1));
   };
 
-  return (
-    <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-      <img src={calendarImg} />
-    </div>
-  );
+  // return (
+  //   <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+  //     <img src={calendarImg} />
+  //   </div>
+  // );
   return (
     <div
       style={{
