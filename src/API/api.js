@@ -17,3 +17,12 @@ export const getLunch = () => {
 export const getNewsCasts = () => {
   return axios.get(newsUrl);
 };
+
+export const getCalendar = () => {
+  console.log("getting calendar");
+  return axios.get(`${url}/announcements/calendar`);
+};
+export const getClock = () => {
+  return axios.get(`${url}/announcements/breakclock`);
+};
+

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { use100vh } from "react-div-100vh";
 import dayjs from "dayjs";
@@ -17,6 +17,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { setDate } from "date-fns/esm";
 import useMedia from "../Hooks/useMedia";
 import calen from "../Assets/Calendarimg.jpg";
+import { getCalendar } from "../API/api";
 const dateFns = require("date-fns");
 
 const Events = () => {
@@ -24,7 +25,16 @@ const Events = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startDay, setStartDay] = useState("royal");
+  const [cali, setCalendar] = useState([]);
 
+  useEffect(() => {
+    console.log("getting calendar")
+    getCalendar().then((result) => {
+      console.log(result.data) 
+       setCalendar(result.data)
+       console.log("img"+cali.calendar_img)
+    })
+}, [])
   const renderHeader = () => {
     const dateFormat = "MMMM yyyy";
     return (
@@ -145,7 +155,7 @@ const Events = () => {
 
   return (
     <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-      <img src={calen} />
+      <img src={cali.calendar_img} />
     </div>
   );
   return (

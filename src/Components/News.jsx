@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {use100vh} from 'react-div-100vh'
 
 import { getNewsCasts } from '../API/api'
+import { getCalendar } from '../API/api'
 import useMedia from '../Hooks/useMedia'
 
 import { Box, Text, useColorMode, CircularProgress, VStack, Stack, HStack, Title } from "@chakra-ui/react"
@@ -34,6 +35,12 @@ const News = () => {
         })
     }, [])
 
+    useEffect(() => {
+        console.log("getting calendar")
+        getCalendar().then((result) => {
+           console.log(result.data)
+        })
+    }, [])
 
 
 
