@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import BottomNav from "./Components/BottomNav";
+import Calendar from "./Components/Calendar";
 import Clock from "./Components/Clock";
 import Events from "./Components/Events";
 import Food from "./Components/Food";
@@ -68,7 +69,7 @@ const App = () => {
         )}
         {view == "schedule" && <Schedule />}
         {view == "news" && <News />}
-        {view == "events" && <Events />}
+        {view == "events" && <Calendar />}
         {view == "food" && <Food />}
         {view == "schoolend" && <SchoolEnd />}
 
