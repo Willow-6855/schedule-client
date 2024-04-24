@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { use100vh } from "react-div-100vh";
 import dayjs from "dayjs";
@@ -17,6 +17,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { setDate } from "date-fns/esm";
 import useMedia from "../Hooks/useMedia";
 import calendarImg from "../Assets/Calendar.jpg";
+import { getCalendar } from "../API/api";
 const dateFns = require("date-fns");
 
 const Events = () => {
@@ -24,6 +25,15 @@ const Events = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startDay, setStartDay] = useState("royal");
+  const [calendarData, setCalenderData] = useState({});
+  
+  useEffect(() => {
+    console.log(dateFns.getMonth(currentMonth));
+    getCalendar(dateFns.getMonth(currentMonth)).then(res=>{
+      setCalenderData(res.data);
+      console.log(calendarData);
+    })
+  }, [currentMonth]);
 
   const renderHeader = () => {
     const dateFormat = "MMM yyyy";
@@ -45,6 +55,7 @@ const Events = () => {
       </div>
     );
   };
+  
 
   const renderDays = () => {
     const dateFormat = "eee";
@@ -60,7 +71,7 @@ const Events = () => {
     return <div className="days row">{days}</div>;
   };
 
-  const isRoyal = (dayNum, monthNum) => {
+  const isRoyal = (dayNum, monthNum) => { // This needs changing
     if (monthNum % 2 == 0) {
       if (dayNum % 2 == 0) {
         return true;

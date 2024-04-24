@@ -4,6 +4,8 @@ const url = "https://schedule-client-api.herokuapp.com";
 //const url = "http://localhost:5000";
 const newsUrl = "https://hsenews.com/wp-json/wp/v2/posts/?categories=493";
 
+const debugUrl = "http://localhost:8001";
+
 export const getSchedule = () => {
   return axios.get(`${url}/schedules`);
 };
@@ -16,4 +18,8 @@ export const getLunch = () => {
 
 export const getNewsCasts = () => {
   return axios.get(newsUrl);
+};
+
+export const getCalendar = (month) => {
+  return axios.get(`${debugUrl}?month=${month}`)
 };
