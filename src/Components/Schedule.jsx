@@ -90,7 +90,8 @@ const Schedule = (props) => {
                   : "#b7cee7",
             }}
           >
-            {localStorage.getItem("day-type")}
+           {localStorage.getItem("day-type") == "Royal" ?
+              "Blue" : "Gray"}
           </span>{" "}
           Day
         </Text>
