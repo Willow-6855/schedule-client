@@ -58,6 +58,7 @@ const Sidebar = (props) => {
     transition: "all 0.5s ease",
     width: props.showSidebar ? "36%" : "0px",
     borderRadius: "10px 0 0 10px",
+    whiteSpace: "nowrap",
   }
 
   return (
@@ -160,8 +161,8 @@ const Calendar = () => {
   };
 
   return (
-    <Flex>
-      <Flex direction="column" paddingLeft={"5"} paddingRight={"5"} flexBasis={"100%"}>
+    <Flex justifyContent={"center"}>
+      <Flex direction="column" paddingLeft={"5"} paddingRight={"5"} flexBasis={"64%"}>
         <Navbar month={currentMonth} next={nextMonth} prev={prevMonth} />
         <Table month={currentMonth} selectedDate={selectedDate} onDateClick={handleSelect} toggleSidebar={toggleSidebar}/>
       </Flex>
