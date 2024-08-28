@@ -23,6 +23,7 @@ const SchoolEnd = () => {
   const [beginDate, setBeginDate] = useState(dayjs("2023-08-09T00:00:00"));
   const [endDate, setEndDate] = useState(dayjs("2024-05-29T15:00:00"));
   const [name, setName] = useState("Break");
+  const [status, setStatus] = useState("LOADING");
   const range = endDate - beginDate;
   const fromStart = dayjs().diff(beginDate);
   const toEnd = endDate - dayjs();
@@ -43,6 +44,7 @@ const SchoolEnd = () => {
       setBeginDate(dayjs(result.data.Start_Date));
       setEndDate(dayjs(result.data.End_Date));
       setName(result.data.title);
+      setStatus("LOADED");
     });
   }, []);
 
@@ -72,7 +74,7 @@ const SchoolEnd = () => {
     setTimeout(() => timer(), 1000);
   };
   
-  return (
+  return status !== "LOADING" ? (
     <div
       style={{
         height: vh - 120,
@@ -107,6 +109,23 @@ const SchoolEnd = () => {
           </Text>
         </CircularProgressLabel>
       </CircularProgress>
+    </div>
+  ) : (
+    <div
+      style={{
+        height: vh - 250,
+        display: "flex",
+        flexDirection: "row",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress
+        isIndeterminate
+        size={mobile ? window.innerWidth * 0.5 : 150}
+        thickness={2.5}
+      />
     </div>
   );
 };
