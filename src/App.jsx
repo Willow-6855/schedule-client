@@ -12,12 +12,7 @@ import SchoolEnd from "./Components/SchoolEnd";
 import Announcements from "./Components/Announcements";
 import SpecialToast from "./Components/SpecialToast";
 
-import {
-  CalendarOutlined,
-  ClockCircleOutlined,
-  PlayCircleOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+import { Box } from "@chakra-ui/react";
 
 const App = () => {
   const settingsFromStorage = localStorage.getItem("scheduleSettings");
@@ -58,22 +53,24 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <Box overflow={"hidden"} h={"100vh"}>
         <Navbar fullView={false} setFullView={setFullView} />
         <BottomNav setView={setView} view={view} />
         <Announcements />
 
-        {view == "clock" && (
-          <Clock fullView={fullView} setFullView={setFullView} />
-        )}
-        {view == "schedule" && <Schedule />}
-        {view == "news" && <News />}
-        {view == "events" && <Events />}
-        {view == "food" && <Food />}
-        {view == "schoolend" && <SchoolEnd />}
+        <Box h={"100%"}>
+          {view == "clock" && (
+            <Clock fullView={fullView} setFullView={setFullView} />
+          )}
+          {view == "schedule" && <Schedule />}
+          {view == "news" && <News />}
+          {view == "events" && <Events />}
+          {view == "food" && <Food />}
+          {view == "schoolend" && <SchoolEnd />}
+        </Box>
 
         <SpecialToast />
-      </div>
+      </Box>
     </>
   );
 };

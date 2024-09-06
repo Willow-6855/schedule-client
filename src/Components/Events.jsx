@@ -154,8 +154,18 @@ const Events = () => {
   };
 
   return (
-    <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
-      <img src={cali.calendar_img} />
+    <div
+      style={{
+        height: vh,
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        overflow: "auto" // Add this line to make the container scrollable
+      }}
+    >
+      <div style={{ display: "flex", width: "100%", justifyContent: "center", marginBottom: "25vh",}}>
+        <img src={cali.calendar_img} />
+      </div>
     </div>
   );
   return (
