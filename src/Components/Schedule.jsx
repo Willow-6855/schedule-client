@@ -107,6 +107,9 @@ const Schedule = (props) => {
 
           {!loading ? (
             schedule.map((period) => {
+              if (period.pathwaysPeriods){
+                console.log(period.pathwaysPeriods)
+              }
               if (period.periodName != "Passing Period") {
                 return (
                   <>
@@ -234,8 +237,10 @@ const Schedule = (props) => {
                               </VStack>
                             </MotionBox>
                           );
-                        })}
-                        {period.pathwaysPeriods && (
+                        })} 
+                      </div>
+                    )}
+                    {period.pathwaysPeriods && (
                           <div
                             id="hi"
                             style={{
@@ -318,8 +323,6 @@ const Schedule = (props) => {
                             })}
                           </div>
                         )}
-                      </div>
-                    )}
                   </>
                 );
               }
