@@ -235,6 +235,89 @@ const Schedule = (props) => {
                             </MotionBox>
                           );
                         })}
+                        {period.pathwaysPeriods && (
+                          <div
+                            id="hi"
+                            style={{
+                              flexShrink: 0,
+                              display: "flex",
+                              alignItems: "flex-end",
+                              justifyContent: mobile ? "flex-end" : "space-between",
+                              flexDirection: mobile ? "column" : "row",
+                              width: "80%",
+                              maxWidth: "500px",
+                            }}
+                          >
+                            {Object.keys(period.pathwaysPeriods).map((pathwayPeriod) => {
+                              return (
+                                <MotionBox
+                                  whileHover={{ x: 3 }}
+                                  style={{
+                                    width: mobile ? "85%" : "24%",
+                                    maxWidth: "500px",
+                                    height: mobile ? "60px" : "80px",
+                                    borderRadius: "10px",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    marginTop: vh * 0.02,
+                                    padding: "24px",
+                                  }}
+                                >
+                                  <div>
+                                    <Text
+                                      fontSize="2xl"
+                                      level={mobile ? 4 : 3}
+                                      style={{
+                                        color: colorMode == "dark" ? "white" : "#333",
+                                        marginBottom: "0px",
+                                      }}
+                                    >
+                                      {pathwayPeriod}
+                                    </Text>
+                                  </div>
+                                  <VStack spacing={1}>
+                                    {mobile ? (
+                                      <Text
+                                        style={{
+                                          color:
+                                            colorMode == "dark" ? "white" : "#555",
+                                          fontSize: mobile ? "12px" : "14px",
+                                        }}
+                                      >
+                                        {period.pathwaysPeriods[pathwayPeriod].startTime} -{" "}
+                                        {period.pathwaysPeriods[pathwayPeriod].endTime}
+                                      </Text>
+                                    ) : (
+                                      <>
+                                        <Text
+                                          style={{
+                                            color:
+                                              colorMode == "dark" ? "white" : "#555",
+                                            fontSize: mobile ? "10px" : "12px",
+                                          }}
+                                        >
+                                          {period.pathwaysPeriods[pathwayPeriod].startTime}
+                                        </Text>
+                                        <br />
+                                        <Text
+                                          style={{
+                                            color:
+                                              colorMode == "dark" ? "white" : "#555",
+                                            fontSize: mobile ? "10px" : "12px",
+                                          }}
+                                        >
+                                          {period.pathwaysPeriods[pathwayPeriod].endTime}
+                                        </Text>
+                                      </>
+                                    )}
+                                  </VStack>
+                                </MotionBox>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     )}
                   </>
