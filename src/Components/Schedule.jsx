@@ -258,7 +258,9 @@ const Schedule = (props) => {
                                 <MotionBox
                                   whileHover={{ x: 3 }}
                                   style={{
-                                    width: mobile ? "85%" : "24%",
+                                    flexShrink: 0,
+                                    boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ",
+                                    width: mobile ? "50%" : "50%",
                                     maxWidth: "500px",
                                     height: mobile ? "60px" : "80px",
                                     borderRadius: "10px",
