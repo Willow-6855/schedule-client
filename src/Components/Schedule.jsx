@@ -107,9 +107,6 @@ const Schedule = (props) => {
 
           {!loading ? (
             schedule.map((period) => {
-              if (period.pathwaysPeriods){
-                console.log(period.pathwaysPeriods)
-              }
               if (period.periodName != "Passing Period") {
                 return (
                   <>
@@ -260,7 +257,7 @@ const Schedule = (props) => {
                                   style={{
                                     flexShrink: 0,
                                     boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ",
-                                    width: mobile ? "50%" : "50%",
+                                    width: mobile ? "49.5%" : "49.5%",
                                     maxWidth: "500px",
                                     height: mobile ? "60px" : "80px",
                                     borderRadius: "10px",
