@@ -1,0 +1,11 @@
+version: "3"
+services:
+  frontend:
+    build: ./
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./:/app     # Map local folder to container folder
+      - /app/node_modules  # Prevent overwriting node_modules with an empty directory
+    stdin_open: true
+    tty: true
