@@ -67,9 +67,13 @@ const Schedule = (props) => {
           flexDirection: "column",
           alignItems: "center",
           width: "100%",
-          maxHeight: "75vh",
+          maxHeight: "100%",
           // margin: "40px 0px",
-          overflowY: "auto",
+          overflowY: "visible",
+          // This is the source of a previous bug!!! Make sure this is set to visible as far as my knowledge,
+          // because it fixed issues regarding the schedule going behind the background lol
+          // - John
+
 
         }}
       >
