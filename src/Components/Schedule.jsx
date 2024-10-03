@@ -72,15 +72,9 @@ const Schedule = (props) => {
           maxHeight: "80%",
           zIndex:100
 
-          // This is the source of a previous bug!!! Make sure this is set to visible as far as my knowledge,
-          // because it fixed issues regarding the schedule going behind the background lol
-          // - John
-
-
           // Hawk Tuah !!! 
           // SPIT ON THAT THANG !!!
           
-
         }}
       >
         <div style={{
