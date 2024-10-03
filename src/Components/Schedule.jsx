@@ -57,7 +57,7 @@ const Schedule = (props) => {
 
   return (
     <>
-      <div
+      {/* <div
         initial="hidden"
         animate="visible"
         style={{
@@ -94,12 +94,13 @@ const Schedule = (props) => {
           // top: "calc(2.5vmax + 1em)",
           overflowY: "visible",
           height: "100%",
-        }}>
+        }}> */}
+        <Box style={{ width: "100%", height: "100%", paddingBottom: "15%", overflowY: "hidden" }}>
           <Text
             fontSize="xl"
             style={{
               textAlign: "center",
-              marginTop: mobile ? (vh < 700 ? vh * 0.19 : vh * 0.09) : vh * 0.01,
+              // marginTop: mobile ? (vh < 700 ? vh * 0.19 : vh * 0.09) : vh * 0.01,
             }}
           >
             Today is a{" "}
@@ -117,247 +118,259 @@ const Schedule = (props) => {
             Day
           </Text>
 
-          {!loading ? (
-            schedule.map((period) => {
-              if (period.periodName != "Passing Period") {
-                return (
-                  <>
-                    <MotionBox
-                      whileHover={{ x: 10 }}
-                      style={{
-                        flexShrink: 0,
-                        boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ",
-                        width: "80%",
-                        maxWidth: "500px",
-                        height: mobile ? "60px" : "80px",
-                        borderRadius: "10px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        marginTop: vh * 0.02,
-                        padding: "24px",
-                      }}
-                    >
-                      <div>
-                        <Text
-                          fontSize="2xl"
-                          level={mobile ? 4 : 3}
-                          style={{
-                            color: colorMode == "dark" ? "white" : "#333",
-                            marginBottom: "0px",
-                          }}
-                        >
-                          {period.periodName}
-                        </Text>
-                      </div>
-                      <div>
-                        <Text
-                          style={{
-                            color: colorMode == "dark" ? "white" : "#555",
-                            fontSize: mobile ? "12px" : "14px",
-                          }}
-                        >
-                          {period.startTime} - {period.endTime}
-                        </Text>
-                      </div>
-                    </MotionBox>
-
-                    {period.lunchPeriods && (
-                      <div
-                        id="hi"
+          <Box style={{ 
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            contain: "strict",
+            width: "100%",
+            height: "100%",
+            overflowY: "auto",
+            paddingBottom: "12px",
+          }}>
+            {!loading ? (
+              schedule.map((period) => {
+                if (period.periodName != "Passing Period") {
+                  return (
+                    <>
+                      <MotionBox
+                        whileHover={{ x: 10 }}
                         style={{
                           flexShrink: 0,
-                          display: "flex",
-                          alignItems: "flex-end",
-                          justifyContent: mobile ? "flex-end" : "space-between",
-                          flexDirection: mobile ? "column" : "row",
+                          boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ",
                           width: "80%",
                           maxWidth: "500px",
+                          height: mobile ? "60px" : "80px",
+                          borderRadius: "10px",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginTop: vh * 0.02,
+                          padding: "24px",
                         }}
                       >
-                        {Object.keys(period.lunchPeriods).map((lunch) => {
-                          return (
-                            <MotionBox
-                              whileHover={{ x: 3 }}
-                              style={{
-                                boxShadow:
-                                  !props.overrideLunch && lunch == lunchType
-                                    ? "2px 2px 15px #ffdb58 "
-                                    : " 2px 2px 15px rgb(0,118,220,0.18) ",
-                                width: mobile ? "85%" : "24%",
-                                maxWidth: "500px",
-                                height: mobile ? "60px" : "80px",
-                                borderRadius: "10px",
-                                cursor: "pointer",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                marginTop: vh * 0.02,
-                                padding: "24px",
-                              }}
-                            >
-                              <div>
-                                <Text
-                                  fontSize="2xl"
-                                  level={mobile ? 4 : 3}
-                                  style={{
-                                    color: colorMode == "dark" ? "white" : "#333",
-                                    marginBottom: "0px",
-                                  }}
-                                >
-                                  {lunch}
-                                </Text>
-                              </div>
-                              <VStack spacing={1}>
-                                {mobile ? (
-                                  <Text
-                                    style={{
-                                      color:
-                                        colorMode == "dark" ? "white" : "#555",
-                                      fontSize: mobile ? "12px" : "14px",
-                                    }}
-                                  >
-                                    {period.lunchPeriods[lunch].startTime} -{" "}
-                                    {period.lunchPeriods[lunch].endTime}
-                                  </Text>
-                                ) : (
-                                  <>
-                                    <Text
-                                      style={{
-                                        color:
-                                          colorMode == "dark" ? "white" : "#555",
-                                        fontSize: mobile ? "10px" : "12px",
-                                      }}
-                                    >
-                                      {period.lunchPeriods[lunch].startTime}
-                                    </Text>
-                                    <br />
-                                    <Text
-                                      style={{
-                                        color:
-                                          colorMode == "dark" ? "white" : "#555",
-                                        fontSize: mobile ? "10px" : "12px",
-                                      }}
-                                    >
-                                      {period.lunchPeriods[lunch].endTime}
-                                    </Text>
-                                  </>
-                                )}
-                              </VStack>
-                            </MotionBox>
-                          );
-                        })} 
-                      </div>
-                    )}
-                    {period.pathwaysPeriods && (
-                          <div
-                            id="hi"
+                        <div>
+                          <Text
+                            fontSize="2xl"
+                            level={mobile ? 4 : 3}
                             style={{
-                              flexShrink: 0,
-                              display: "flex",
-                              alignItems: "flex-end",
-                              justifyContent: mobile ? "flex-end" : "space-between",
-                              flexDirection: mobile ? "column" : "row",
-                              width: "80%",
-                              maxWidth: "500px",
+                              color: colorMode == "dark" ? "white" : "#333",
+                              marginBottom: "0px",
                             }}
                           >
-                            {Object.keys(period.pathwaysPeriods).map((pathwayPeriod) => {
-                              return (
-                                <MotionBox
-                                  whileHover={{ x: 3 }}
-                                  style={{
-                                    flexShrink: 0,
-                                    boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ",
-                                    width: mobile ? "49.5%" : "49.5%",
-                                    maxWidth: "500px",
-                                    height: mobile ? "60px" : "80px",
-                                    borderRadius: "10px",
-                                    cursor: "pointer",
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                    marginTop: vh * 0.02,
-                                    padding: "24px",
-                                  }}
-                                >
-                                  <div>
+                            {period.periodName}
+                          </Text>
+                        </div>
+                        <div>
+                          <Text
+                            style={{
+                              color: colorMode == "dark" ? "white" : "#555",
+                              fontSize: mobile ? "12px" : "14px",
+                            }}
+                          >
+                            {period.startTime} - {period.endTime}
+                          </Text>
+                        </div>
+                      </MotionBox>
+
+                      {period.lunchPeriods && (
+                        <div
+                          id="hi"
+                          style={{
+                            flexShrink: 0,
+                            display: "flex",
+                            alignItems: "flex-end",
+                            justifyContent: mobile ? "flex-end" : "space-between",
+                            flexDirection: mobile ? "column" : "row",
+                            width: "80%",
+                            maxWidth: "500px",
+                          }}
+                        >
+                          {Object.keys(period.lunchPeriods).map((lunch) => {
+                            return (
+                              <MotionBox
+                                whileHover={{ x: 3 }}
+                                style={{
+                                  boxShadow:
+                                    !props.overrideLunch && lunch == lunchType
+                                      ? "2px 2px 15px #ffdb58 "
+                                      : " 2px 2px 15px rgb(0,118,220,0.18) ",
+                                  width: mobile ? "85%" : "24%",
+                                  maxWidth: "500px",
+                                  height: mobile ? "60px" : "80px",
+                                  borderRadius: "10px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  marginTop: vh * 0.02,
+                                  padding: "24px",
+                                }}
+                              >
+                                <div>
+                                  <Text
+                                    fontSize="2xl"
+                                    level={mobile ? 4 : 3}
+                                    style={{
+                                      color: colorMode == "dark" ? "white" : "#333",
+                                      marginBottom: "0px",
+                                    }}
+                                  >
+                                    {lunch}
+                                  </Text>
+                                </div>
+                                <VStack spacing={1}>
+                                  {mobile ? (
                                     <Text
-                                      fontSize="2xl"
-                                      level={mobile ? 4 : 3}
                                       style={{
-                                        color: colorMode == "dark" ? "white" : "#333",
-                                        marginBottom: "0px",
+                                        color:
+                                          colorMode == "dark" ? "white" : "#555",
+                                        fontSize: mobile ? "12px" : "14px",
                                       }}
                                     >
-                                      {pathwayPeriod}
+                                      {period.lunchPeriods[lunch].startTime} -{" "}
+                                      {period.lunchPeriods[lunch].endTime}
                                     </Text>
-                                  </div>
-                                  <VStack spacing={1}>
-                                    {mobile ? (
+                                  ) : (
+                                    <>
                                       <Text
                                         style={{
                                           color:
                                             colorMode == "dark" ? "white" : "#555",
-                                          fontSize: mobile ? "12px" : "14px",
+                                          fontSize: mobile ? "10px" : "12px",
                                         }}
                                       >
-                                        {period.pathwaysPeriods[pathwayPeriod].startTime} -{" "}
-                                        {period.pathwaysPeriods[pathwayPeriod].endTime}
+                                        {period.lunchPeriods[lunch].startTime}
                                       </Text>
-                                    ) : (
-                                      <>
+                                      <br />
+                                      <Text
+                                        style={{
+                                          color:
+                                            colorMode == "dark" ? "white" : "#555",
+                                          fontSize: mobile ? "10px" : "12px",
+                                        }}
+                                      >
+                                        {period.lunchPeriods[lunch].endTime}
+                                      </Text>
+                                    </>
+                                  )}
+                                </VStack>
+                              </MotionBox>
+                            );
+                          })} 
+                        </div>
+                      )}
+                      {period.pathwaysPeriods && (
+                            <div
+                              id="hi"
+                              style={{
+                                flexShrink: 0,
+                                display: "flex",
+                                alignItems: "flex-end",
+                                justifyContent: mobile ? "flex-end" : "space-between",
+                                flexDirection: mobile ? "column" : "row",
+                                width: "80%",
+                                maxWidth: "500px",
+                              }}
+                            >
+                              {Object.keys(period.pathwaysPeriods).map((pathwayPeriod) => {
+                                return (
+                                  <MotionBox
+                                    whileHover={{ x: 3 }}
+                                    style={{
+                                      flexShrink: 0,
+                                      boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ",
+                                      width: mobile ? "49.5%" : "49.5%",
+                                      maxWidth: "500px",
+                                      height: mobile ? "60px" : "80px",
+                                      borderRadius: "10px",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      justifyContent: "space-between",
+                                      alignItems: "center",
+                                      marginTop: vh * 0.02,
+                                      padding: "24px",
+                                    }}
+                                  >
+                                    <div>
+                                      <Text
+                                        fontSize="2xl"
+                                        level={mobile ? 4 : 3}
+                                        style={{
+                                          color: colorMode == "dark" ? "white" : "#333",
+                                          marginBottom: "0px",
+                                        }}
+                                      >
+                                        {pathwayPeriod}
+                                      </Text>
+                                    </div>
+                                    <VStack spacing={1}>
+                                      {mobile ? (
                                         <Text
                                           style={{
                                             color:
                                               colorMode == "dark" ? "white" : "#555",
-                                            fontSize: mobile ? "10px" : "12px",
+                                            fontSize: mobile ? "12px" : "14px",
                                           }}
                                         >
-                                          {period.pathwaysPeriods[pathwayPeriod].startTime}
-                                        </Text>
-                                        <br />
-                                        <Text
-                                          style={{
-                                            color:
-                                              colorMode == "dark" ? "white" : "#555",
-                                            fontSize: mobile ? "10px" : "12px",
-                                          }}
-                                        >
+                                          {period.pathwaysPeriods[pathwayPeriod].startTime} -{" "}
                                           {period.pathwaysPeriods[pathwayPeriod].endTime}
                                         </Text>
-                                      </>
-                                    )}
-                                  </VStack>
-                                </MotionBox>
-                              );
-                            })}
-                          </div>
-                        )}
-                  </>
-                );
-              }
-            })
-          ) : (
-            <div
-              style={{
-                height: vh - 250,
-                display: "flex",
-                flexDirection: "row",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <CircularProgress
-                isIndeterminate
-                size={mobile ? window.innerWidth * 0.5 : 150}
-                thickness={2.5}
-              />
-            </div>
-          )}
-        </div>
-      </div>
+                                      ) : (
+                                        <>
+                                          <Text
+                                            style={{
+                                              color:
+                                                colorMode == "dark" ? "white" : "#555",
+                                              fontSize: mobile ? "10px" : "12px",
+                                            }}
+                                          >
+                                            {period.pathwaysPeriods[pathwayPeriod].startTime}
+                                          </Text>
+                                          <br />
+                                          <Text
+                                            style={{
+                                              color:
+                                                colorMode == "dark" ? "white" : "#555",
+                                              fontSize: mobile ? "10px" : "12px",
+                                            }}
+                                          >
+                                            {period.pathwaysPeriods[pathwayPeriod].endTime}
+                                          </Text>
+                                        </>
+                                      )}
+                                    </VStack>
+                                  </MotionBox>
+                                );
+                              })}
+                            </div>
+                          )}
+                    </>
+                  );
+                }
+              })
+            ) : (
+              <div
+                style={{
+                  height: vh - 250,
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <CircularProgress
+                  isIndeterminate
+                  size={mobile ? window.innerWidth * 0.5 : 150}
+                  thickness={2.5}
+                />
+              </div>
+            )}
+          </Box>
+        </Box>
+        {/* </div>
+      </div> */}
     </>
   );
 };
