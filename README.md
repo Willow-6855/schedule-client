@@ -1,4 +1,4 @@
 # HSE Schedule App
 
-[Live Schedule App](https://hseschedule.com/)
+[Live Schedule App](https://hseschedule.app/)
 
